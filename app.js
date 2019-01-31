@@ -9,6 +9,7 @@ var path = require('path');
 var handlebars = require('express3-handlebars')
 
 var index = require('./routes/index');
+var project = require('./routes/project');
 var hello = require('./routes/hello');
 // Example route
 // var user = require('./routes/user');
@@ -19,7 +20,7 @@ var app = express();
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', handlebars());
-app.set('view engine', 'handlebars');
+app.set('view engine', 'handlebars');http://ixd.ucsd.edu/home/w19/lab/lab4/w19hci-lab4.058.png
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -37,6 +38,7 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', index.view);
+app.get('/project:name', project.viewProject);
 app.get('/hello/:userName', hello.view);
 // Example route
 // app.get('/users', user.list);
